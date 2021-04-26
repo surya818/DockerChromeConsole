@@ -1,0 +1,11 @@
+C:\Users\SuryaRekha\source\repos\DockChromConsole\DockChromConsole\bin\Debug\netcoreapp2.2\DockChromConsole.deps.json
+C:\Users\SuryaRekha\source\repos\DockChromConsole\DockChromConsole\bin\Debug\netcoreapp2.2\DockChromConsole.runtimeconfig.json
+C:\Users\SuryaRekha\source\repos\DockChromConsole\DockChromConsole\bin\Debug\netcoreapp2.2\DockChromConsole.runtimeconfig.dev.json
+C:\Users\SuryaRekha\source\repos\DockChromConsole\DockChromConsole\bin\Debug\netcoreapp2.2\DockChromConsole.dll
+C:\Users\SuryaRekha\source\repos\DockChromConsole\DockChromConsole\bin\Debug\netcoreapp2.2\DockChromConsole.pdb
+C:\Users\SuryaRekha\source\repos\DockChromConsole\DockChromConsole\obj\Debug\netcoreapp2.2\DockChromConsole.AssemblyInfoInputs.cache
+C:\Users\SuryaRekha\source\repos\DockChromConsole\DockChromConsole\obj\Debug\netcoreapp2.2\DockChromConsole.AssemblyInfo.cs
+C:\Users\SuryaRekha\source\repos\DockChromConsole\DockChromConsole\obj\Debug\netcoreapp2.2\DockChromConsole.csproj.CoreCompileInputs.cache
+C:\Users\SuryaRekha\source\repos\DockChromConsole\DockChromConsole\obj\Debug\netcoreapp2.2\DockChromConsole.dll
+C:\Users\SuryaRekha\source\repos\DockChromConsole\DockChromConsole\obj\Debug\netcoreapp2.2\DockChromConsole.pdb
+C:\Users\SuryaRekha\source\repos\DockChromConsole\DockChromConsole\obj\Debug\netcoreapp2.2\DockChromConsole.genruntimeconfig.cache

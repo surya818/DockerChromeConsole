@@ -1,0 +1,15 @@
+C:\Users\SuryaRekha\source\repos\DockChromConsole\DockChromConsole\bin\release\netcoreapp2.2\linux-x64\libhostpolicy.so
+C:\Users\SuryaRekha\source\repos\DockChromConsole\DockChromConsole\bin\release\netcoreapp2.2\linux-x64\libhostfxr.so
+C:\Users\SuryaRekha\source\repos\DockChromConsole\DockChromConsole\bin\release\netcoreapp2.2\linux-x64\DockChromConsole
+C:\Users\SuryaRekha\source\repos\DockChromConsole\DockChromConsole\bin\release\netcoreapp2.2\linux-x64\DockChromConsole.deps.json
+C:\Users\SuryaRekha\source\repos\DockChromConsole\DockChromConsole\bin\release\netcoreapp2.2\linux-x64\DockChromConsole.runtimeconfig.json
+C:\Users\SuryaRekha\source\repos\DockChromConsole\DockChromConsole\bin\release\netcoreapp2.2\linux-x64\DockChromConsole.runtimeconfig.dev.json
+C:\Users\SuryaRekha\source\repos\DockChromConsole\DockChromConsole\bin\release\netcoreapp2.2\linux-x64\DockChromConsole.dll
+C:\Users\SuryaRekha\source\repos\DockChromConsole\DockChromConsole\bin\release\netcoreapp2.2\linux-x64\DockChromConsole.pdb
+C:\Users\SuryaRekha\source\repos\DockChromConsole\DockChromConsole\obj\release\netcoreapp2.2\linux-x64\DockChromConsole.csprojAssemblyReference.cache
+C:\Users\SuryaRekha\source\repos\DockChromConsole\DockChromConsole\obj\release\netcoreapp2.2\linux-x64\DockChromConsole.AssemblyInfoInputs.cache
+C:\Users\SuryaRekha\source\repos\DockChromConsole\DockChromConsole\obj\release\netcoreapp2.2\linux-x64\DockChromConsole.AssemblyInfo.cs
+C:\Users\SuryaRekha\source\repos\DockChromConsole\DockChromConsole\obj\release\netcoreapp2.2\linux-x64\DockChromConsole.csproj.CoreCompileInputs.cache
+C:\Users\SuryaRekha\source\repos\DockChromConsole\DockChromConsole\obj\release\netcoreapp2.2\linux-x64\DockChromConsole.dll
+C:\Users\SuryaRekha\source\repos\DockChromConsole\DockChromConsole\obj\release\netcoreapp2.2\linux-x64\DockChromConsole.pdb
+C:\Users\SuryaRekha\source\repos\DockChromConsole\DockChromConsole\obj\release\netcoreapp2.2\linux-x64\DockChromConsole.genruntimeconfig.cache
