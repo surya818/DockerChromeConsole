@@ -14,7 +14,9 @@ namespace DockChromConsole
             {
                 throw new InvalidOperationException("UITest failed");
             }
+            Console.WriteLine("Test Successful: ");
             driver.Close();
+            Console.WriteLine("Test Successful: Closed browser");
         }
     }
 }

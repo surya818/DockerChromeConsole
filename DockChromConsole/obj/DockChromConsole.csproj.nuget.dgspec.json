@@ -79,7 +79,7 @@
         }
       },
       "runtimes": {
-        "linux-x64": {
+        "alpine-x64": {
           "#import": []
         }
       }
