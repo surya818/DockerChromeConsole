@@ -1,0 +1,283 @@
+﻿<!DOCTYPE html>
+<!-- saved from url=(0115)file:///C:/Data/code/0619/test_system_functional_test/resources/AchPoc/Payment%20Poc%20-%20MoneyIn.Ach.Poc.Web.html -->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Poc - MoneyIn.Ach.Poc.Web</title>
+
+
+    <link rel="stylesheet" href="./plaidpoc_files/bootstrap.css">
+
+
+    <link rel="stylesheet" href="./plaidpoc_files/site.css">
+    <link href="https://cdn.plaid.com/link/2.0.392/link-dynamic-loader.js" rel="prefetch" as="script">
+</head>
+<body>
+
+    <div class="container">
+
+
+
+        <main role="main" class="pb-3">
+
+            <div class="text-center">
+                <h5 class="display-6">Payment POC | Plaid + Dwolla</h5>
+            </div>
+            <div class="row">
+                <div class="col-5"></div>
+                <div class="col-2">
+                    <button id="link-button">Link Account</button>
+                </div>
+                <div class="col-5"></div>
+            </div>
+            <div class="row publicTokenContainer" style="display: none;">
+                <div class="col-3"></div>
+                <div class="col-2">Public token:</div>
+                <div class="col-7 publicTokenPlaceholder" style="font-weight: bold; color: darkgreen"></div>
+                <div class="col-7 accountIdPlaceholder" style="font-weight: bold; color: darkgreen"></div>
+            </div>
+            <div class="row">
+                <div class="col-4"></div>
+                <div class="col-4 accounts" style="font-size: 10px; background-color: #eee; padding: 10px; display: none;">
+                    <div class="items"></div>
+                    <button id="submit-account">Submit</button>
+                </div>
+                <div class="col-4"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-4"></div>
+                <div class="col-4 checkout" style="font-size: 10px; background-color: #eee; padding: 10px; display: none;">
+                    <input class="firstname" type="text" value="Lucky"><br>
+                    <input class="lastname" type="text" value="Luke"><br>
+                    <input class="account" type="text" value=""><br>
+                    <input class="amount" type="number" value="0"><br>
+                    <input class="currencyId" type="text" value="USD"><br>
+                    <input class="processorToken" type="text" value="" disabled="disabled"><br>
+
+
+                    <button id="submit-checkout">Checkout</button>
+                </div>
+                <div class="col-4"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-4"></div>
+                <div class="col-4 state" style="font-size: 10px; background-color: #eee; padding: 10px; display: none;">
+                    <img src="./plaidpoc_files/checkbox.png" width="40" height="40" class="green-checkbox" style="display: none;">
+                    <img src="./plaidpoc_files/loader.gif" width="40" height="40" class="loader"><br>
+                    <p class="status-text">Pending...</p>
+                </div>
+                <div class="col-4"></div>
+            </div>
+
+            <script src="./plaidpoc_files/jquery.min.js.ladda ned"></script>
+            <script src="./plaidpoc_files/link-initialize.js.ladda ned"></script>
+            <script type="text/javascript">
+    (function ($) {
+        var handler = Plaid.create({
+            clientName: 'Plaid Quickstart',
+            // Optional, specify an array of ISO-3166-1 alpha-2 country
+            // codes to initialize Link; European countries will have GDPR
+            // consent panel
+            countryCodes: ['US'],
+            env: 'sandbox',
+            // Replace with your public_key from the Dashboard
+            key: '<plaidPublicKey>',
+            product: ['auth'],
+            // Optional, use webhooks to get transaction and error updates
+            webhook: 'https://requestb.in',
+            // Optional, specify a language to localize Link
+            language: 'en',
+            // Optional, specify userLegalName and userEmailAddress to
+            // enable all Auth features
+            userLegalName: 'John Appleseed',
+            userEmailAddress: 'jappleseed@yourapp.com',
+            onLoad: function () {
+                console.log("onLoad: ");
+                // Optional, called when Link loads
+            },
+            onSuccess: function (public_token, metadata) {
+				$('.publicTokenPlaceholder').html(public_token);
+				$('.accountIdPlaceholder').html(metadata.account_id);
+
+				$('.publicTokenContainer').show();
+                console.log("PublicToken: " + public_token);
+                console.log("AccountId: " + metadata.account_id);
+                console.log(metadata);
+                // Send the public_token to your app server.
+                // The metadata object contains info about the institution the
+                // user selected and the account ID or IDs, if the
+                // Select Account view is enabled.
+                GetAccessToken(public_token);
+            },
+            onExit: function (err, metadata) {
+                console.log("onExit: " + err);
+                // The user exited the Link flow.
+                if (err != null) {
+                    // The user encountered a Plaid API error prior to exiting.
+                }
+                // metadata contains information about the institution
+                // that the user selected and the most recent API request IDs.
+                // Storing this information can be helpful for support.
+            },
+            onEvent: function (eventName, metadata) {
+                console.log("onEvent: " + eventName);
+                // Optionally capture Link flow events, streamed through
+                // this callback as your users connect an Item to Plaid.
+                // For example:
+                // eventName = "TRANSITION_VIEW"
+                // metadata  = {
+                //   link_session_id: "123-abc",
+                //   mfa_type:        "questions",
+                //   timestamp:       "2017-09-14T14:42:19.350Z",
+                //   view_name:       "MFA",
+                // }
+            }
+        });
+
+        $('#link-button').on('click', function (e) {
+            handler.open();
+        });
+
+        $('#submit-account').on('click', function (e) {
+            var accountId = $(".accounts .items input[name='accounts']:checked").val();
+            var accessToken = $(".accounts .items input[name='accounts']:checked").data("accesstoken");
+            $(".checkout .account").val($(".accounts .items input[name='accounts']:checked").data("info"));
+            CreateDwollaProcessorToken(accountId, accessToken);
+        });
+
+        $('#submit-checkout').on('click', function (e) {
+            var firstname = $(".checkout .firstname").val();
+            var lastname = $(".checkout .lastname").val();
+            var processorToken = $(".checkout .processorToken").val();
+            var accountName = $(".checkout .account").val();
+            var amount = parseInt($(".checkout .amount").val());
+            var currencyId = $(".checkout .currencyId").val();
+
+            InitDwollaTransfer(firstname, lastname, processorToken, accountName, amount, currencyId);
+        });
+    })(jQuery);
+
+    function GetAccessToken(publicToken) {
+        $.ajax({
+            type: "POST",
+            url: "v1/plaid/access-token",
+            data: JSON.stringify({ PublicToken: publicToken }),
+            success: function (response) {
+                console.log("AJAX success");
+                GetAccounts(response.access_token);
+            },
+            failed: function (response) {
+                console.log("AJAX failed");
+            },
+            dataType: "json",
+            contentType: "application/json"
+        });
+    }
+
+    function GetAccounts(accessToken) {
+        $.ajax({
+            type: "POST",
+            url: "v1/plaid/accounts",
+            data: JSON.stringify({ AccessToken: accessToken }),
+            success: function (response) {
+                $("#link-button").hide();
+                $(".accounts").show();
+                $.each(response.accounts, function (i, item) {
+                    $(".accounts .items").append('<input type="radio" id="' + item.account_id + '" name="accounts" value="' + item.account_id + '" data-accesstoken="' + accessToken + '" data-info="' + item.balances.current + ' ' + item.balances.iso_currency_code + ' - ' + item.name + ' (' + item.type + ')" checked> <label for="' + item.account_id + '">' + item.balances.current + ' ' + item.balances.iso_currency_code + ' - ' + item.name + ' (' + item.type + ')</label><br>');
+                });
+
+                console.log("AJAX success");
+
+            },
+            failed: function (response) {
+                console.log("AJAX failed");
+            },
+            dataType: "json",
+            contentType: "application/json"
+        });
+    }
+
+    function CreateDwollaProcessorToken(accountId, accessToken) {
+        $.ajax({
+            type: "POST",
+            url: "v1/plaid/processor-token",
+            data: JSON.stringify({ AccessToken: accessToken, AccountId: accountId }),
+            success: function (response) {
+                console.log("AJAX success");
+                $(".checkout .processorToken").val(response.processor_token);
+                $(".accounts").hide();
+                $(".checkout").show();
+            },
+            failed: function (response) {
+                console.log("AJAX failed");
+            },
+            dataType: "json",
+            contentType: "application/json"
+        });
+    }
+
+    function InitDwollaTransfer(firstname, lastname, processorToken, accountName, amount, currencyId) {
+        $.ajax({
+            type: "POST",
+            url: "v1/dwolla/transfer",
+            data: JSON.stringify({ Firstname: firstname, Lastname: lastname, ProcessorToken: processorToken, AccountName: accountName, Amount: amount, CurrencyId: currencyId }),
+            success: function (response) {
+                console.log("AJAX success - InitDwollaTransfer");
+
+                setInterval(function(){ GetDwollaTransfer(response.transferId); }, 5000);
+            },
+            failed: function (response) {
+                console.log("AJAX failed");
+            },
+            dataType: "json",
+            contentType: "application/json"
+        });
+    }
+
+    function GetDwollaTransfer(transferId) {
+        console.log("GetDwollaTransfer called");
+        $(".checkout").hide();
+        $(".state").show();
+        $.ajax({
+            type: "GET",
+            url: "v1/dwolla/transfer/"+transferId,
+            success: function (response) {
+                console.log("AJAX success");
+                if (response.status === "processed") {
+                    $('.state .green-checkbox').show();
+                    $('.state .loader').hide();
+                    $(".state .status-text").html(response.status + " - payment was successful!");
+                } else {
+                    $('.state .green-checkbox').hide();
+                    $('.state .loader').show();
+                    $(".state .status-text").html(response.status);
+                }
+            },
+            failed: function (response) {
+                console.log("AJAX failed");
+            },
+            dataType: "json",
+            contentType: "application/json"
+        });
+    }
+
+            </script>
+        </main>
+    </div><iframe id="plaid-link-iframe-1" src="./plaidpoc_files/link.html" width="100%" height="100%" style="position: fixed; top: 0px; left: 0px; right: 0px; bottom: 0px; z-index: 2147483647; border-width: 0px; display: none; overflow: hidden auto;"></iframe><iframe id="plaid-link-iframe-1" src="./plaidpoc_files/link(1).html" width="100%" height="100%" style="position: fixed; top: 0px; left: 0px; right: 0px; bottom: 0px; z-index: 2147483647; border-width: 0px; display: none; overflow: hidden auto;"></iframe>
+
+
+    <script src="./plaidpoc_files/jquery.js.ladda ned"></script>
+    <script src="./plaidpoc_files/bootstrap.bundle.js.ladda ned"></script>
+
+
+    <script src="./plaidpoc_files/site.js.ladda ned"></script>
+
+
+
+
+</body>
+</html>
