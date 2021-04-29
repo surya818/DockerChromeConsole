@@ -8,5 +8,4 @@ C:\Users\SuryaRekha\source\repos\DockChromConsole\DockChromConsole\obj\Debug\net
 C:\Users\SuryaRekha\source\repos\DockChromConsole\DockChromConsole\obj\Debug\netcoreapp2.2\DockChromConsole.dll
 C:\Users\SuryaRekha\source\repos\DockChromConsole\DockChromConsole\obj\Debug\netcoreapp2.2\DockChromConsole.pdb
 C:\Users\SuryaRekha\source\repos\DockChromConsole\DockChromConsole\obj\Debug\netcoreapp2.2\DockChromConsole.genruntimeconfig.cache
-C:\Users\SuryaRekha\source\repos\DockChromConsole\DockChromConsole\obj\Debug\netcoreapp2.2\DockChromConsole.csprojAssemblyReference.cache
 C:\Users\SuryaRekha\source\repos\DockChromConsole\DockChromConsole\obj\Debug\netcoreapp2.2\DockChromConsole.csproj.CoreCompileInputs.cache

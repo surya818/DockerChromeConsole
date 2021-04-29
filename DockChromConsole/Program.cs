@@ -8,9 +8,9 @@ namespace DockChromConsole
         public static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            var driver = UiSetup.InitDriverAndOpenWebPage("chrome", "https://google.com");
+            var driver = UiSetup.InitDriverAndOpenWebPage("chrome", "https://bing.com");
             var title = driver.Title;
-            if (driver.Title == null || !driver.Title.Equals("Google"))
+            if (driver.Title == null || !driver.Title.Equals("Bing"))
             {
                 throw new InvalidOperationException("UITest failed");
             }
