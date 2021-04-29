@@ -48,7 +48,7 @@ namespace uitest.browser
                     FirefoxDriverService service =
                         FirefoxDriverService.CreateDefaultService(@"/usr/bin","geckodriver");
                     service.FirefoxBinaryPath = @"/usr/bin/firefox";
-
+                    getDriver = new FirefoxDriver(service);
                     break;
 
                 default:
