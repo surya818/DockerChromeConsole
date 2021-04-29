@@ -13,7 +13,8 @@
           "Microsoft.NETCore.App": "2.2.8",
           "Selenium.Support": "4.0.0-beta2",
           "Selenium.WebDriver": "4.0.0-beta2",
-          "Selenium.WebDriver.ChromeDriver": "90.0.4430.2400"
+          "Selenium.WebDriver.ChromeDriver": "90.0.4430.2400",
+          "Selenium.WebDriver.GeckoDriver": "0.29.1"
         },
         "runtime": {
           "DockChromConsole.dll": {}
@@ -813,7 +814,8 @@
           }
         }
       },
-      "Selenium.WebDriver.ChromeDriver/90.0.4430.2400": {}
+      "Selenium.WebDriver.ChromeDriver/90.0.4430.2400": {},
+      "Selenium.WebDriver.GeckoDriver/0.29.1": {}
     }
   },
   "libraries": {
@@ -933,6 +935,13 @@
       "sha512": "sha512-poYw2JgVJ8obMYUSnfuucxQMrMusQiA3H2dXhw3bOaFm/bweTEAvhK8RVq+5zfjmTaj7COMYfIjhWJU0rPUabQ==",
       "path": "selenium.webdriver.chromedriver/90.0.4430.2400",
       "hashPath": "selenium.webdriver.chromedriver.90.0.4430.2400.nupkg.sha512"
+    },
+    "Selenium.WebDriver.GeckoDriver/0.29.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-KGcrt9tChb+nELY3JkxysWyglpoegXM2E2L0J/XZhN7DOU9PfYmtmfryCF8XfcB4qL7dCQ909CP7X17PaMBFrw==",
+      "path": "selenium.webdriver.geckodriver/0.29.1",
+      "hashPath": "selenium.webdriver.geckodriver.0.29.1.nupkg.sha512"
     }
   },
   "runtimes": {

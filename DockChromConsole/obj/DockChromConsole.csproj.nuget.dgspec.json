@@ -63,6 +63,10 @@
             "Selenium.WebDriver.ChromeDriver": {
               "target": "Package",
               "version": "[90.0.4430.2400, )"
+            },
+            "Selenium.WebDriver.GeckoDriver": {
+              "target": "Package",
+              "version": "[0.29.1, )"
             }
           },
           "imports": [
