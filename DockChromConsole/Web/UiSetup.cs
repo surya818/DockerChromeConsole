@@ -46,7 +46,7 @@ namespace uitest.browser
 
                 case "firefox":
                     FirefoxDriverService service =
-                        FirefoxDriverService.CreateDefaultService(@"/usr/bin","geckodriver");
+                        FirefoxDriverService.CreateDefaultService();
                     service.FirefoxBinaryPath = @"/usr/bin/firefox";
                     getDriver = new FirefoxDriver(service);
                     break;
