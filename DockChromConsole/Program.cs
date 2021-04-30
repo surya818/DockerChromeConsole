@@ -10,11 +10,11 @@ namespace DockChromConsole
         public static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            string filepath = "../../../Web/plaidpoc.html";
+            string filepath = "Web/plaidpoc.html";
             string absoluteFilePath = Path.GetFullPath(filepath);
             Console.WriteLine(absoluteFilePath);
             
-            var driver = UiSetup.InitDriverAndOpenWebPage("chrome", absoluteFilePath);
+            var driver = UiSetup.InitDriverAndOpenWebPage("firefox", "file:///"+absoluteFilePath);
             var title = driver.Title;
             /*
              * if (driver.Title == null || !driver.Title.Equals("Bing"))
