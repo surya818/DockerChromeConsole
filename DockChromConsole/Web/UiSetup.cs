@@ -45,9 +45,10 @@ namespace uitest.browser
                     break;
 
                 case "firefox":
-                    var driverService = FirefoxDriverService.CreateDefaultService(@"/usr/bin");
-                    var driver = new FirefoxDriver((FirefoxDriverService)driverService, new FirefoxOptions(), TimeSpan.FromMinutes(2)); //third parameter is a command timeout
-
+                    FirefoxDriverService service =
+                        FirefoxDriverService.CreateDefaultService(@"/usr/bin","geckodriver");
+                    service.FirefoxBinaryPath = @"/usr/bin/firefox";
+                    getDriver = new FirefoxDriver(service);
                     break;
 
                 default:
