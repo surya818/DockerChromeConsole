@@ -45,10 +45,15 @@ namespace uitest.browser
                     break;
 
                 case "firefox":
+                    var ffoptions = new FirefoxOptions();
+                    ffoptions.BrowserExecutableLocation = @"/usr/bin/firefox";
+                    ffoptions.LogLevel = FirefoxDriverLogLevel.Default;
+                    ffoptions.Profile = new FirefoxProfile(@"/home/alpine/profile");
+
                     FirefoxDriverService service =
                         FirefoxDriverService.CreateDefaultService(@"/usr/bin","geckodriver");
                     service.FirefoxBinaryPath = @"/usr/bin/firefox";
-                    getDriver = new FirefoxDriver(service);
+                    getDriver = new FirefoxDriver(service,ffoptions,TimeSpan.FromSeconds(30));
                     break;
 
                 default:
