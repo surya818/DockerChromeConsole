@@ -13,7 +13,7 @@ namespace DockChromConsole
             
         
             Console.WriteLine("Hello World!");
-            string filepath = "../../../Web/plaidpoc.html";
+            string filepath = "Web/plaidpoc.html";
             string absoluteFilePath = Path.GetFullPath(filepath);
             Console.WriteLine(absoluteFilePath);
             
