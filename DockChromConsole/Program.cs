@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Reflection;
 using OpenQA.Selenium;
 using uitest.browser;
 
@@ -9,12 +10,14 @@ namespace DockChromConsole
     {
         public static void Main(string[] args)
         {
+            
+        
             Console.WriteLine("Hello World!");
-            string filepath = "Web/plaidpoc.html";
+            string filepath = "../../../Web/plaidpoc.html";
             string absoluteFilePath = Path.GetFullPath(filepath);
             Console.WriteLine(absoluteFilePath);
             
-            var driver = UiSetup.InitDriverAndOpenWebPage("firefox", "file:///"+absoluteFilePath);
+            var driver = UiSetup.InitDriverAndOpenWebPage("chrome", "file:///"+absoluteFilePath);
             var title = driver.Title;
             /*
              * if (driver.Title == null || !driver.Title.Equals("Bing"))

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
@@ -27,10 +28,15 @@ namespace uitest.browser
         public static IWebDriver InitDriver(string browser)
         {
             ChromeOptions options = new ChromeOptions();
+            
             switch (browser)
             {
                 case "chrome":
-                    
+                    if (IsWindows())
+                    {
+                        getDriver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+
+                    }
                     options.AddArgument("--no-sandbox");
                     options.AddArgument("--disable-dev-shm-using");
                     var runtime = System.Runtime.InteropServices.RuntimeInformation.OSDescription;
@@ -45,10 +51,10 @@ namespace uitest.browser
                     break;
 
                 case "firefox":
+                    
                     var ffoptions = new FirefoxOptions();
                     ffoptions.BrowserExecutableLocation = @"/usr/bin/firefox";
                     ffoptions.LogLevel = FirefoxDriverLogLevel.Default;
-                    ffoptions.Profile = new FirefoxProfile(@"/home/alpine/profile");
 
                     FirefoxDriverService service =
                         FirefoxDriverService.CreateDefaultService(@"/usr/bin","geckodriver");
@@ -57,6 +63,11 @@ namespace uitest.browser
                     break;
 
                 default:
+                    if (IsWindows())
+                    {
+                        getDriver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+
+                    }
                     options.AddArgument("--no-sandbox");
                     options.AddArgument("--disable-dev-shm-using");
                     runtime = System.Runtime.InteropServices.RuntimeInformation.OSDescription;
@@ -78,10 +89,17 @@ namespace uitest.browser
 
         public static IWebDriver InitDriverAndOpenWebPage(string browser, string url)
         {
-            var driver = InitDriver(browser);
-            driver.Url = url;
-            return driver;
+            getDriver= InitDriver(browser);
+            getDriver.Url = url;
+            return getDriver;
         }
-    }
+
+        public static bool IsWindows()
+        {
+            bool isWindowsOs = System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
+            return isWindowsOs;
+        
+        }
+}
 }
 
