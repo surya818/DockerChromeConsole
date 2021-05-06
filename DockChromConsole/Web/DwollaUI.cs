@@ -34,6 +34,8 @@ namespace DockChromConsole.Web
             var dwollaTemplateFilePath = Path.Combine(tmpDirAbsolutePath, "dwollapoc.html");
             var tmpFileName = "dwollapoc-" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".html";
             var dwollaProcessedFilePath = Path.Combine(tmpDirAbsolutePath, tmpFileName);
+            Console.WriteLine("Template path: "+dwollaTemplateFilePath);
+            Console.WriteLine("ProcessedFile: "+dwollaProcessedFilePath);
             ProcessDwollaTemplateFile(dwollaTemplateFilePath, dwollaProcessedFilePath, plaidPublicKey);
             return dwollaProcessedFilePath;
         }
