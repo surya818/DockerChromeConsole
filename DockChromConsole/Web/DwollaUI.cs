@@ -66,10 +66,8 @@ namespace DockChromConsole.Web
             Environment.SetEnvironmentVariable("DISPLAY", ":1");
             LoadPlaidScreen(plaidPublicToken);
             ClickLinkAccount();
-            //SwitchToIframe();
-            //ClickGetStarted();
-            _driver.FindElement(By.TagName("body")).SendKeys(Keys.Tab);
-            _driver.FindElement(By.TagName("body")).SendKeys(Keys.Return);
+            SwitchToIframe();
+            ClickGetStarted();
             SelectBank();
             LoginToBank();
             SelectAccountAndContinue();
@@ -201,11 +199,12 @@ namespace DockChromConsole.Web
             for (int i = 0; i < iframes.Count; i++)
             {
                 var button = iframes[i];
-                Console.WriteLine("Button " + i + "'s text is: " + button.Text);
-                Console.WriteLine("Button enabled" + button.Enabled);
+                Console.WriteLine("IFrame " + i + "'s text is: " + button.Text);
+                Console.WriteLine("Iframe enabled: " + button.Enabled);
 
                 if (button.Enabled)
                 {
+                    Console.WriteLine(button.GetAttribute("id"));
                     _driver.SwitchTo().Frame(button);
                 }
             }
