@@ -114,14 +114,21 @@ namespace DockChromConsole.Web
 
         private void ClickGetStarted()
         {
-            var getStartedBtn = UiSetup.WaitForElement(_driver, DwollaLocators.GET_STARTED_BTN_XPATH);
+            Sleep(5);
+            var getStartedBtn = _driver.FindElement(By.XPath(DwollaLocators.GET_STARTED_BTN_XPATH));
+            Console.WriteLine("Get Started Btn Displayed: " + getStartedBtn.Displayed);
             getStartedBtn.Click();
+            Console.WriteLine("Get Started Btn Clicked: " + getStartedBtn.Displayed);
+
         }
 
         private void ClickLinkAccount()
         {
             var linkAccountBtn = UiSetup.WaitForElement(_driver, DwollaLocators.LINK_ACCOUNT_XPATH);
+            Console.WriteLine("Link Account Btn Displayed: "+linkAccountBtn.Displayed);
             linkAccountBtn.Click();
+            Console.WriteLine("Link Account Btn Clicked: " + linkAccountBtn.Displayed);
+
         }
 
         private string ExtractPlaidAccountId()
@@ -169,6 +176,7 @@ namespace DockChromConsole.Web
         private void SwitchToIframe()
         {
             var iFrame = _driver.FindElement(By.Id(DwollaLocators.BANK_IFRAME_XPATH));
+            Console.WriteLine("1st iFrame Displayed: " + iFrame.Displayed);
             _driver.SwitchTo().Frame(iFrame);
             Sleep(2);
         }
