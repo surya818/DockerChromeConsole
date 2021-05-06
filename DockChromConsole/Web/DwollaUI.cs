@@ -66,8 +66,9 @@ namespace DockChromConsole.Web
             Environment.SetEnvironmentVariable("DISPLAY", ":1");
             LoadPlaidScreen(plaidPublicToken);
             ClickLinkAccount();
-            SwitchToIframe();
-            ClickGetStarted();
+            //SwitchToIframe();
+            //ClickGetStarted();
+            _driver.FindElement(By.TagName("body")).SendKeys(Keys.Return);
             SelectBank();
             LoginToBank();
             SelectAccountAndContinue();
