@@ -192,7 +192,7 @@ namespace DockChromConsole.Web
 
         private void SwitchToIframe()
         {
-            var iFrame = _driver.FindElement(By.XPath(DwollaLocators.BANK_IFRAME_XPATH));
+            var iFrame = _driver.FindElement(By.Id(DwollaLocators.BANK_IFRAME_XPATH));
             Console.WriteLine("1st iFrame Displayed: " + iFrame.Displayed);
             _driver.SwitchTo().Frame(iFrame);
             Console.WriteLine("1st iFrame Clicked: " + iFrame.Displayed);
