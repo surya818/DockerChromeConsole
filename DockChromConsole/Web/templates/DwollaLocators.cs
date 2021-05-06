@@ -1,4 +1,4 @@
-﻿namespace DockChromConsole.Web
+﻿namespace Minority.InternalTesting.RegressionTest.Contract.ACH.templates
 {
     public class DwollaLocators
     {

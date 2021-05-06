@@ -78,6 +78,7 @@ namespace DockChromConsole.Web
             var request = new Dictionary<string, object>();
             request.Add("AccessToken", token);
             request.Add("ExternalAccountIds", accountsList);
+            Console.WriteLine("Request: "+request.ToString());
             return request;
         }
 
