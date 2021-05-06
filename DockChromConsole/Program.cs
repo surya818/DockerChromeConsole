@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
+using DockChromConsole.Web;
 using OpenQA.Selenium;
 using uitest.browser;
 
@@ -11,8 +12,8 @@ namespace DockChromConsole
         public static void Main(string[] args)
         {
             
-        
             Console.WriteLine("Hello World!");
+            new DwollaUI().LoginToBankAndExtractAchAccountInformation("fde3d2728b2f2df0b8119b7c16bf62");
             string filepath = "/app/DockerChromeConsole/DockChromConsole/Web/plaidpoc.html";
             string absoluteFilePath = Path.GetFullPath(filepath);
             Console.WriteLine(absoluteFilePath);
