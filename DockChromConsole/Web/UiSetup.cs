@@ -90,9 +90,8 @@ namespace uitest.browser
 
             if (IsLinux())
             {
-                options.BinaryLocation = AlpineBinPath;
+                options.BinaryLocation = Path.Combine(AlpineBinPath, "chromium-browser");
                 options.AddArgument("--no-sandbox");
-                options.AddArgument("--headless");
                 options.AddArgument("--disable-dev-shm-using");
                 Console.WriteLine("Binary location: "+options.BinaryLocation);
                 return new ChromeDriver(AlpineBinPath, options);
