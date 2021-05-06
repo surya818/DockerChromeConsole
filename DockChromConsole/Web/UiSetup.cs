@@ -93,6 +93,10 @@ namespace uitest.browser
                 options.BinaryLocation = Path.Combine(AlpineBinPath, "chromium-browser");
                 options.AddArgument("--no-sandbox");
                 options.AddArgument("--disable-dev-shm-using");
+                options.AddArguments("use-fake-ui-for-media-stream");
+                options.AddArguments("allow-file-access-from-files");
+                options.AddArguments("use-fake-ui-for-media-stream");
+                options.AddArguments("--ignore-certificate-errors");
                 Console.WriteLine("Binary location: "+options.BinaryLocation);
                 return new ChromeDriver(AlpineBinPath, options);
             }
