@@ -48,7 +48,6 @@ namespace uitest.browser
                     break;
             }
 
-            driver.Manage().Window.Maximize();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
             return driver;
         }
