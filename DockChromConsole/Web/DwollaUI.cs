@@ -68,6 +68,7 @@ namespace DockChromConsole.Web
             ClickLinkAccount();
             //SwitchToIframe();
             //ClickGetStarted();
+            _driver.FindElement(By.TagName("body")).SendKeys(Keys.Tab);
             _driver.FindElement(By.TagName("body")).SendKeys(Keys.Return);
             SelectBank();
             LoginToBank();
