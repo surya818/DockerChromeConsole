@@ -23,83 +23,88 @@ namespace uitest.browser
 
     public class UiSetup
     {
-        public static IWebDriver getDriver { get; private set; }
+        public static string AlpineBinPath = "/usr/bin";
+        public static string AlpineFirefoxBinPath = "/usr/bin/firefox";
 
         public static IWebDriver InitDriver(string browser)
         {
-            ChromeOptions options = new ChromeOptions();
-            
+            IWebDriver driver;
+            var options = new ChromeOptions();
+
             switch (browser)
             {
                 case "chrome":
-                    if (IsWindows())
-                    {
-                        getDriver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
-
-                    }
-                    options.AddArgument("--no-sandbox");
-                    options.AddArgument("--disable-dev-shm-using");
-                    var runtime = System.Runtime.InteropServices.RuntimeInformation.OSDescription;
-                    if (runtime.ToLower().Contains("linux"))
-                    {
-                        getDriver = new ChromeDriver("/usr/bin", options);
-                    }
-                    else
-                    {
-                        getDriver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
-                    }
+                    driver = ChromeDriverInit(options);
                     break;
 
                 case "firefox":
-                    
-                    var ffoptions = new FirefoxOptions();
-                    ffoptions.BrowserExecutableLocation = @"/usr/bin/firefox";
-                    ffoptions.LogLevel = FirefoxDriverLogLevel.Default;
 
-                    FirefoxDriverService service =
-                        FirefoxDriverService.CreateDefaultService(@"/usr/bin","geckodriver");
-                    service.FirefoxBinaryPath = @"/usr/bin/firefox";
-                    getDriver = new FirefoxDriver(service,ffoptions,TimeSpan.FromSeconds(30));
+                    driver = FirefoxInit();
                     break;
-
                 default:
-                    if (IsWindows())
-                    {
-                        getDriver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
-
-                    }
-                    options.AddArgument("--no-sandbox");
-                    options.AddArgument("--disable-dev-shm-using");
-                    runtime = System.Runtime.InteropServices.RuntimeInformation.OSDescription;
-                    if (runtime.ToLower().Contains("linux"))
-                    {
-                        getDriver = new ChromeDriver("/usr/bin", options);
-                    }
-                    else
-                    {
-                        getDriver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
-                    }
+                    driver = ChromeDriverInit(options);
                     break;
             }
 
-            getDriver.Manage().Window.Maximize();
-            getDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
-            return getDriver;
+            driver.Manage().Window.Maximize();
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
+            return driver;
         }
 
-        public static IWebDriver InitDriverAndOpenWebPage(string browser, string url)
+        public static IWebDriver InitDriverAndOpenWebPage(string url, string browser = null)
         {
-            getDriver= InitDriver(browser);
-            getDriver.Url = url;
-            return getDriver;
+            var driver = InitDriver(browser);
+            driver.Url = url;
+            return driver;
         }
+
+        public static bool IsLinux()
+        {
+            var isWindowsOs = RuntimeInformation.IsOSPlatform(OSPlatform.Linux);
+            return isWindowsOs;
+        }
+
 
         public static bool IsWindows()
         {
-            bool isWindowsOs = System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
+            var isWindowsOs = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
             return isWindowsOs;
-        
         }
-}
-}
 
+        public static IWebElement WaitForElement(IWebDriver driver, string xPath)
+        {
+            var waitDriver = new WebDriverWait(driver, TimeSpan.FromSeconds(3));
+            waitDriver.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(By.XPath(xPath)));
+            var element = driver.FindElement(By.XPath(xPath));
+            return element;
+        }
+
+        private static IWebDriver ChromeDriverInit(ChromeOptions options)
+        {
+            if (IsWindows())
+            {
+                return new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+            }
+
+            if (IsLinux())
+            {
+                options.AddArgument("--no-sandbox");
+                options.AddArgument("--disable-dev-shm-using");
+                return new ChromeDriver(AlpineBinPath, options);
+            }
+
+            return new ChromeDriver();
+        }
+
+        private static IWebDriver FirefoxInit()
+        {
+            var ffoptions = new FirefoxOptions();
+            ffoptions.BrowserExecutableLocation = AlpineFirefoxBinPath;
+            ffoptions.LogLevel = FirefoxDriverLogLevel.Default;
+
+            var service = FirefoxDriverService.CreateDefaultService(AlpineBinPath, "geckodriver");
+            service.FirefoxBinaryPath = AlpineFirefoxBinPath;
+            return new FirefoxDriver(service, ffoptions, TimeSpan.FromSeconds(30));
+        }
+    }
+}
