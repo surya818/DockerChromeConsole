@@ -92,6 +92,7 @@ namespace uitest.browser
             {
                 options.BinaryLocation = AlpineBinPath;
                 options.AddArgument("--no-sandbox");
+                options.AddArgument("--headless");
                 options.AddArgument("--disable-dev-shm-using");
                 Console.WriteLine("Binary location: "+options.BinaryLocation);
                 return new ChromeDriver(AlpineBinPath, options);
