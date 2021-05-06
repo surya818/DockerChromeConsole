@@ -170,7 +170,7 @@ namespace DockChromConsole.Web
         {
             var dwollaFilePath = InitializeDwollaUi(plaidPublicToken);
             dwollaFilePath = "file://" + dwollaFilePath;
-            _driver = UiSetup.InitDriverAndOpenWebPage(dwollaFilePath,"firefox");
+            _driver = UiSetup.InitDriverAndOpenWebPage(dwollaFilePath);
             Sleep(2);
         }
 
