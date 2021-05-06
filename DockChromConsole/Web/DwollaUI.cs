@@ -145,6 +145,7 @@ namespace DockChromConsole.Web
         private void LoadPlaidScreen(string plaidPublicToken)
         {
             var dwollaFilePath = InitializeDwollaUi(plaidPublicToken);
+            dwollaFilePath = "/app/Ach/templates/dwollapoc-20210506124401.html";
             _driver = UiSetup.InitDriverAndOpenWebPage(dwollaFilePath);
             Sleep(2);
         }
