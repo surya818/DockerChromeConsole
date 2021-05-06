@@ -116,10 +116,26 @@ namespace DockChromConsole.Web
         private void ClickGetStarted()
         {
             Sleep(5);
-            var getStartedBtn = _driver.FindElement(By.XPath(DwollaLocators.GET_STARTED_BTN_XPATH));
-            Console.WriteLine("Get Started Btn Displayed: " + getStartedBtn.Displayed);
-            getStartedBtn.Click();
-            Console.WriteLine("Get Started Btn Clicked: " + getStartedBtn.Displayed);
+            IWebElement realButton = null;
+            var buttons = _driver.FindElements(By.TagName("button"));
+            Console.WriteLine("Buttons count in Get started Page: " + buttons.Count);
+            for (int i = 0; i < buttons.Count; i++)
+            {
+                var button = buttons[i];
+                Console.WriteLine("Button " + i + "'s text is: " + button.Text);
+                Console.WriteLine("Button enabled" + button.Enabled);
+
+                if (button.Enabled)
+                {
+                    realButton = button;
+                }
+            }
+
+            if (realButton != null)
+            {
+                Console.WriteLine("Real Button Clicking") ;
+                realButton.Click();
+            }
 
         }
 
