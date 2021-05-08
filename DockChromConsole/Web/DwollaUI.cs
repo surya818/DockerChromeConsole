@@ -67,7 +67,6 @@ namespace DockChromConsole.Web
             LoadPlaidScreen(plaidPublicToken);
             ClickLinkAccount();
             SwitchToIframe();
-            ClickGetStarted();
             SelectBank();
             LoginToBank();
             SelectAccountAndContinue();
