@@ -194,7 +194,6 @@ namespace DockChromConsole.Web
             IWebElement iFrame = _driver.FindElement(By.Id(DwollaLocators.BANK_IFRAME_XPATH));
             _driver.SwitchTo().Frame(iFrame);
             Sleep(2);
-            _driver.SwitchTo().Frame(iFrame);
             IReadOnlyCollection<IWebElement> butts = _driver.FindElements(By.TagName("button"));
             int i = 0;
             foreach (var butt in butts)
@@ -211,7 +210,6 @@ namespace DockChromConsole.Web
                 Console.WriteLine("Button Location of elm by CLASS for button  " + i++ + " is " + butt.Location);
 
             }
-            _driver.SwitchTo().Frame(iFrame);
             IWebElement getStartedBtn = _driver.FindElement(By.XPath(DwollaLocators.GET_STARTED_BTN_XPATH));
             getStartedBtn.Click();
         }
