@@ -5,6 +5,8 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using Minority.InternalTesting.RegressionTest.Contract.ACH.templates;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 using uitest.browser;
 
 namespace DockChromConsole.Web
@@ -142,7 +144,9 @@ namespace DockChromConsole.Web
             Console.WriteLine("Link Account Btn Displayed: "+linkAccountBtn.Displayed);
             linkAccountBtn.Click();
             Console.WriteLine("Link Account Btn Clicked: " + linkAccountBtn.Displayed);
-
+            var waitDriver = new WebDriverWait(_driver, TimeSpan.FromSeconds(15));
+            waitDriver.Until(ExpectedConditions.InvisibilityOfElementLocated(By.XPath(DwollaLocators.LINK_ACCOUNT_XPATH)));
+           
         }
 
         private string ExtractPlaidAccountId()
