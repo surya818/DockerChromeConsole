@@ -13,7 +13,7 @@
 
 
         public static string BANK_USERNAME_TEXT_XPATH = "//*[@id=\"username\"]";
-        public static string GET_STARTED_BTN_XPATH = "/html/body/div/div/div[1]/div/div/div[2]/div[2]/div/button[1]";
+        public static string GET_STARTED_BTN_XPATH = "//*[@id=\"plaid-link-container\"]/div/div[1]/div/div/div[2]/div[2]/div/button[1]";
         public static string LINK_ACCOUNT_XPATH = "//*[@id=\"link-button\"]";
         public static string PASSWORD = "pass_good";
         public static string PLAID_ACCOUNTID = "/html/body/div/main/div[3]/div[4]";
