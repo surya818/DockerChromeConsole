@@ -202,14 +202,6 @@ namespace DockChromConsole.Web
                 Console.WriteLine("Button Location of elm for button  " + i + " is " + butt.Location);
 
             }
-            butts = _driver.FindElements(By.ClassName("Button Button--is-plaid-color"));
-            i = 0;
-            foreach (var butt in butts)
-            {
-                Console.WriteLine("Button text of elm BY CLASS for button  " + i++ + " is " + butt.Text);
-                Console.WriteLine("Button Location of elm by CLASS for button  " + i++ + " is " + butt.Location);
-
-            }
             IWebElement getStartedBtn = _driver.FindElement(By.XPath(DwollaLocators.GET_STARTED_BTN_XPATH));
             getStartedBtn.Click();
         }
