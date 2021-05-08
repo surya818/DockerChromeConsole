@@ -116,6 +116,12 @@ namespace DockChromConsole.Web
         private void ClickGetStarted()
         {
             Sleep(3);
+            IReadOnlyCollection<IWebElement> butts = _driver.FindElements(By.TagName("button"));
+            int i = 0;
+            foreach (var butt in butts)
+            {
+                Console.WriteLine("Button text of elm for button  "+i+++" is "+butt.Text);
+            }
             IWebElement getStartedBtn = _driver.FindElement(By.XPath(DwollaLocators.GET_STARTED_BTN_XPATH));
             getStartedBtn.Click();
 
