@@ -120,8 +120,8 @@ namespace DockChromConsole.Web
             int i = 0;
             foreach (var butt in butts)
             {
-                Console.WriteLine("Button text of elm for button  "+i+++" is "+butt.Text);
-                Console.WriteLine("Button Location of elm for button  " + i++ + " is " +butt.Location);
+                Console.WriteLine("Button text of elm for button  "+i++ +" is "+butt.Text);
+                Console.WriteLine("Button Location of elm for button  " + i + " is " +butt.Location);
 
             }
             butts = _driver.FindElements(By.ClassName("Button Button--is-plaid-color"));
@@ -193,7 +193,27 @@ namespace DockChromConsole.Web
             Sleep(3);
             IWebElement iFrame = _driver.FindElement(By.Id(DwollaLocators.BANK_IFRAME_XPATH));
             _driver.SwitchTo().Frame(iFrame);
-            Sleep(5);
+            Sleep(2);
+            _driver.SwitchTo().Frame(iFrame);
+            IReadOnlyCollection<IWebElement> butts = _driver.FindElements(By.TagName("button"));
+            int i = 0;
+            foreach (var butt in butts)
+            {
+                Console.WriteLine("Button text of elm for button  " + i++ + " is " + butt.Text);
+                Console.WriteLine("Button Location of elm for button  " + i + " is " + butt.Location);
+
+            }
+            butts = _driver.FindElements(By.ClassName("Button Button--is-plaid-color"));
+            i = 0;
+            foreach (var butt in butts)
+            {
+                Console.WriteLine("Button text of elm BY CLASS for button  " + i++ + " is " + butt.Text);
+                Console.WriteLine("Button Location of elm by CLASS for button  " + i++ + " is " + butt.Location);
+
+            }
+            _driver.SwitchTo().Frame(iFrame);
+            IWebElement getStartedBtn = _driver.FindElement(By.XPath(DwollaLocators.GET_STARTED_BTN_XPATH));
+            getStartedBtn.Click();
         }
     }
 }
