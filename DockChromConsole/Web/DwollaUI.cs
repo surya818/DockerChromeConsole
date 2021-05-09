@@ -146,9 +146,7 @@ namespace DockChromConsole.Web
             linkAccountBtn.Click();
             Console.WriteLine("After Click, Link Account Btn Displayed: " + linkAccountBtn.Displayed);
             Console.WriteLine("After Click, Link Account Btn Enabled: " + linkAccountBtn.Enabled);
-            var waitDriver = new WebDriverWait(_driver, TimeSpan.FromSeconds(15));
-            waitDriver.Until(ExpectedConditions.InvisibilityOfElementLocated(By.XPath(DwollaLocators.LINK_ACCOUNT_XPATH)));
-           
+            
         }
 
         private string ExtractPlaidAccountId()
@@ -195,7 +193,9 @@ namespace DockChromConsole.Web
 
         private void SwitchToIframe()
         {
-            Sleep(3);
+            var waitDriver = new WebDriverWait(_driver, TimeSpan.FromSeconds(15));
+            //waitDriver.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.XPath(DwollaLocators.BANK_IFRAME_XPATH)));
+            waitDriver.Until(ExpectedConditions.FrameToBeAvailableAndSwitchToIt(DwollaLocators.BANK_IFRAME_XPATH));
             IWebElement iFrame = _driver.FindElement(By.Id(DwollaLocators.BANK_IFRAME_XPATH));
             _driver.SwitchTo().Frame(iFrame);
             Sleep(2);
