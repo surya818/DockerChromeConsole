@@ -197,7 +197,8 @@ namespace DockChromConsole.Web
             IWebElement iFrame = _driver.FindElement(By.Id(DwollaLocators.BANK_IFRAME_XPATH));
             Console.WriteLine("iFrame: Displayed " + iFrame.Displayed);
             Console.WriteLine("iFrame: Enabled " + iFrame.Enabled);
-
+            Console.WriteLine("SRC: "+iFrame.GetAttribute("src"));
+            Console.WriteLine("SRC: " + iFrame.GetAttribute("src"));
             _driver.SwitchTo().Frame(iFrame);
             Sleep(5);
             IReadOnlyCollection<IWebElement> butts = _driver.FindElements(By.TagName("button"));
@@ -208,6 +209,7 @@ namespace DockChromConsole.Web
                 Console.WriteLine("Button Location of elm for button  " + i + " is " + butt.Location);
 
             }
+            
             IWebElement getStartedBtn = _driver.FindElement(By.XPath(DwollaLocators.GET_STARTED_BTN_XPATH));
             getStartedBtn.Click();
         }
