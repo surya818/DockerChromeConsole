@@ -194,7 +194,7 @@ namespace DockChromConsole.Web
         private void SwitchToIframe()
         {
             Sleep(5);
-            IWebElement iFrame = _driver.FindElement(By.Id(DwollaLocators.BANK_IFRAME_XPATH));
+            IWebElement iFrame = _driver.FindElement(By.XPath(DwollaLocators.BANK_IFRAME_XPATH));
             Console.WriteLine("iFrame: Displayed " + iFrame.Displayed);
             Console.WriteLine("iFrame: Enabled " + iFrame.Enabled);
             Console.WriteLine("SRC: "+iFrame.GetAttribute("src"));

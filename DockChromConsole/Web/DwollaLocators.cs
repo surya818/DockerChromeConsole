@@ -3,7 +3,7 @@
     public class DwollaLocators
     {
         public static string accountId;
-        public static string BANK_IFRAME_XPATH = "plaid-link-iframe-1";
+        public static string BANK_IFRAME_XPATH = "//*[@id=\"plaid-link-iframe-1\"]";
         public static string BANK_PASSWORD_TEXT_XPATH = "//*[@id=\"password\"]";
         public static string BANK_SELECT_ACCOUNT_TILE_XPATH = "//*[@id=\"plaid-link-container\"]/div/div[1]/div/div[2]/div[3]/div[1]/div[1]";
         public static string BANK_SUBMIT_BTN_XPATH = "//*[@id=\"plaid-link-container\"]/div/div[1]/div/div[2]/div[3]/div/form/button";
