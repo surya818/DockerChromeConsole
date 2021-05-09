@@ -56,6 +56,7 @@ namespace uitest.browser
         {
             var driver = InitDriver(browser);
             driver.Url = url;
+            Console.WriteLine("Opening webpage: "+url);
             return driver;
         }
 
