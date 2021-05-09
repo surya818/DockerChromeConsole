@@ -24,7 +24,7 @@ namespace DockChromConsole.Web
         public static string InitializeDwollaUi(string plaidPublicKey)
         {
             CleanDwollaHtmlFilesInTmp();
-            var tmpDirPath = "../../release/netcoreapp2.2/Ach/templates";
+            var tmpDirPath = "../../../Web/templates";
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
@@ -85,7 +85,7 @@ namespace DockChromConsole.Web
 
         private static void CleanDwollaHtmlFilesInTmp()
         {
-            var tmpDirPath = "../../../../Minority.InternalTesting.RegressionTest.Contract/ACH/templates";
+            var tmpDirPath = "../../../Web/templates";
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
