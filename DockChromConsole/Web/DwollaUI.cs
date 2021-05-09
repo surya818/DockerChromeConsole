@@ -195,8 +195,11 @@ namespace DockChromConsole.Web
         {
             Sleep(5);
             IWebElement iFrame = _driver.FindElement(By.Id(DwollaLocators.BANK_IFRAME_XPATH));
+            Console.WriteLine("iFrame: Displayed " + iFrame.Displayed);
+            Console.WriteLine("iFrame: Enabled " + iFrame.Enabled);
+
             _driver.SwitchTo().Frame(iFrame);
-            Sleep(2);
+            Sleep(5);
             IReadOnlyCollection<IWebElement> butts = _driver.FindElements(By.TagName("button"));
             int i = 0;
             foreach (var butt in butts)
