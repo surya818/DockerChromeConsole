@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -113,6 +114,27 @@ namespace uitest.browser
             var service = FirefoxDriverService.CreateDefaultService(AlpineBinPath, "geckodriver");
             service.FirefoxBinaryPath = AlpineFirefoxBinPath;
             return new FirefoxDriver(service, ffoptions, TimeSpan.FromSeconds(30));
+        }
+
+        public static void cleanupBrowser()
+        {
+            Process proc = new Process
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = "program.exe",
+                    Arguments = "command line arguments to your executable",
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true,
+                    CreateNoWindow = true
+                }
+            };
+            proc.Start();
+            while (!proc.StandardOutput.EndOfStream)
+            {
+                string line = proc.StandardOutput.ReadLine();
+                Console.WriteLine("CLEANUP LOG: "+line);
+            }
         }
     }
 }

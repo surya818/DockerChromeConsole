@@ -14,6 +14,7 @@ namespace DockChromConsole
         {
             
             Console.WriteLine("Hello World!");
+            UiSetup.cleanupBrowser();
             var obj = new DwollaUI().LoginToBankAndExtractAchAccountInformation("fde3d2728b2f2df0b8119b7c16bf62");
             Console.WriteLine("AccessToken: "+obj.GetValueOrDefault("AccessToken"));
             Console.WriteLine("ExternalAccountIds: " + obj.GetValueOrDefault("ExternalAccountIds"));
