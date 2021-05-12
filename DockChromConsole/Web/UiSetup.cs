@@ -122,8 +122,8 @@ namespace uitest.browser
             {
                 StartInfo = new ProcessStartInfo
                 {
-                    FileName = "program.exe",
-                    Arguments = "command line arguments to your executable",
+                    FileName = "/app/Ach/cleanup.sh",
+                    Arguments = "",
                     UseShellExecute = false,
                     RedirectStandardOutput = true,
                     CreateNoWindow = true
