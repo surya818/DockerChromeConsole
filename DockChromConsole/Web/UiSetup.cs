@@ -122,7 +122,7 @@ namespace uitest.browser
             {
                 StartInfo = new ProcessStartInfo
                 {
-                    FileName = "/app/Ach/cleanup.sh",
+                    FileName = "/app/Ach/cleanup.sh &",
                     Arguments = "",
                     UseShellExecute = false,
                     RedirectStandardOutput = true,
